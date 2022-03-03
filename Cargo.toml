@@ -1,0 +1,17 @@
+[package]
+edition = "2021"
+name = "zcif_bin"
+version = "0.1.0"
+[dependencies]
+clap = "*"
+
+[dependencies.simple_logger]
+default-features = false
+features = ["colors"]
+
+[dependencies.zcif]
+git = "https://github.com/etemesi254/zcif"
+
+[profile]
+[profile.release]
+debug = 2
