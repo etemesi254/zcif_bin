@@ -5,6 +5,12 @@ This repository contains a smalll benchmark program to benchmark FSE and Huffman
 
 ## Steps to run
 
+Note, you should have installed rust compiler and cargo (preferrably via [rustup](https://rustup.rs/)) and have cargo in your `PATH`
+
+It requires a relatively new rust compiler version, about 1.58.0 and above
+
+Clone this repository and navigate to the directory and then
+
 To test FSE run.
 
 
