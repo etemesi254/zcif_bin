@@ -52,30 +52,30 @@ fn _huff(file: &str,runs:usize) {
         reader.set_position(0);
 
         let start_compress = Instant::now();
-        huff_compress(&reader.get_ref(), &mut writer);
+        huff_compress(&reader.get_ref(), &mut writer).unwrap();
         let stop_compress = Instant::now();
 
         writer.set_position(0);
 
         let start_decomp = Instant::now();
-        huff_decompress(&mut writer, &mut new_writer);
+        huff_decompress(&mut writer, &mut new_writer).unwrap();
         let stop_decomp = Instant::now();
 
 
-        print!(
+        eprint!(
             "\r {} bytes -> {} bytes ({:.2}%)  [{:.4} to 1] ",
             reader.get_ref().len(),
             writer.get_ref().len(),
             (writer.get_ref().len() as f64 / (reader.get_ref().len() as f64) * 100.0),
             reader.get_ref().len() as f64 / (writer.get_ref().len() as f64)
         );
-        print!(
+        eprint!(
             " {:.2} MB/s",
             reader.get_ref().len() as f64
                 / ((1 << 20) as f64 * (stop_compress - start_compress).as_secs_f64())
         );
 
-        print!(
+        eprint!(
             " {:.2} MB/s ",
             new_writer.len() as f64 
                 / ((1 << 20) as f64 * (stop_decomp - start_decomp).as_secs_f64())
@@ -107,30 +107,30 @@ fn _fse(file: &str,runs:usize) {
         reader.set_position(0);
 
         let start_compress = Instant::now();
-        fse_compress(&reader.get_ref(), &mut writer);
+        fse_compress(&reader.get_ref(), &mut writer).unwrap();
         let stop_compress = Instant::now();
 
         writer.set_position(0);
 
         let start_decomp = Instant::now();
-        fse_decompress(&mut writer, &mut new_writer);
+        fse_decompress(&mut writer, &mut new_writer).unwrap();
         let stop_decomp = Instant::now();
 
 
-        print!(
+        eprint!(
             "\r {} bytes -> {} bytes ({:.2}%)  [{:.4} to 1] ",
             reader.get_ref().len(),
             writer.get_ref().len(),
             (writer.get_ref().len() as f64 / (reader.get_ref().len() as f64) * 100.0),
             reader.get_ref().len() as f64 / (writer.get_ref().len() as f64)
         );
-        print!(
+        eprint!(
             "  {:.2} MB/s",
             reader.get_ref().len() as f64
                 / ((1 << 20) as f64 * (stop_compress - start_compress).as_secs_f64())
         );
 
-        print!(
+        eprint!(
             " {:.2} MB/s ",
             new_writer.len() as f64 
                 / ((1 << 20) as f64 * (stop_decomp - start_decomp).as_secs_f64())
